@@ -1,0 +1,113 @@
+/* MEDIA QUERIES  */
+
+@media only screen and (max-width: 1200px) {
+	body .nav__items {
+		margin-left: 6rem;
+	}
+/* 
+	body .home {
+		grid-template-columns: 20rem 1fr;
+	} */
+}
+
+@media only screen and (max-width: 1200px) {
+	body .nav__items {
+		margin-left: 2rem;
+	}
+/* 
+	body .home {
+		grid-template-columns: 20rem 1fr;
+	} */
+}
+
+@media only screen and (max-width: 900px) {
+	html {
+		font-size: 56%;
+	}
+}
+
+@media only screen and (max-width: 860px) {
+	body .filter_panel {
+		display: none;
+	}
+
+	/* note Editor */
+	body .note,
+	body .note_container {
+		width: 90%;
+		margin: auto;
+		margin-top: 1rem;
+	}
+
+	/* body .home {
+		grid-template-columns: 1fr;
+		grid-template-rows: 7rem 1fr 5.2rem 5.2rem;
+		grid-template-areas:
+			"header"
+			"main"
+			"aside_mobile"
+			"footer";
+	} */
+
+	body .filter__icon {
+		display: flex;
+	}
+
+	body .nav--mobile {
+		display: flex;
+	}
+
+	body .notes_nav {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 780px) {
+	html {
+		font-size: 55%;
+	}
+
+	body .search_box {
+		display: none;
+	}
+
+	body .date_label {
+		display: none;
+	}
+
+	body .note .select {
+		margin-left: 0;
+	}
+
+	body .note:hover {
+		box-shadow: none;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	html {
+		font-size: 52%;
+	}
+
+	body .form {
+		min-width: 30rem;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	html {
+		font-size: 47%;
+	}
+
+	body .brand__text {
+		cursor: pointer;
+		font-size: 2.5rem;
+	}
+
+	body .header__nav_btns {
+		display: flex;
+		grid-gap: 7px;
+		gap: 7px;
+		padding-right: 0;
+	}
+}

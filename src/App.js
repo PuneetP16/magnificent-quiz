@@ -1,9 +1,78 @@
+import {
+	Alert,
+	Aside,
+	AsideMobile,
+	Footer,
+	Header,
+	Loader,
+	SearchBoxMobile,
+} from "components";
+import { useAlert, useAuth, useLoader } from "contexts";
+import { Home, Login, NotFound, SignUp } from "pages";
+import { useEffect } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { ROUTES } from "utils/routes";
 import "./App.css";
+import "./responsive.css";
 
 function App() {
-	return <div className="App">
-    Home Page
-  </div>;
+	const { pathname } = useLocation();
+	const { alert } = useAlert();
+	const { authState } = useAuth();
+	const { loader } = useLoader();
+
+	const isAuth = !!authState?.token;
+
+	const isAuthPage = pathname === "/login" || pathname === "/signup";
+	const isNotFoundPage = pathname === "/pagenotfound";
+
+	const injectPageCss = () => {
+		if (isNotFoundPage) {
+			return "not_found_page";
+		}
+		if (isAuthPage) {
+			return "body auth";
+		}
+		return "body home";
+	};
+
+	return (
+		<div className={`App ${injectPageCss()}`}>
+			{alert.visibility && <Alert />}
+			{pathname !== ROUTES.notFound && <Header />}
+
+			{isAuthPage || isNotFoundPage ? null : <Aside />}
+			{pathname !== ROUTES.notFound && <SearchBoxMobile />}
+
+			<Routes>
+				<Route path={ROUTES.home} element={<Home />} />
+				<Route path={ROUTES.category} element={<>category Page</>} />
+				<Route path={ROUTES.question} element={<>question Page</>} />
+				<Route path={ROUTES.account} element={<>account Page</>} />
+				<Route path={ROUTES.leaderboard} element={<>leaderboard Page</>} />
+				<Route path={ROUTES.settings} element={<>settings Page</>} />
+				<Route path={ROUTES.support} element={<>Support Page</>} />
+				<Route
+					path={ROUTES.login}
+					element={isAuth ? <Navigate to="/" replace /> : <Login />}
+				/>
+				<Route
+					path={ROUTES.signup}
+					element={isAuth ? <Navigate to="/" replace /> : <SignUp />}
+				/>
+				<Route path={ROUTES.loader} element={<Loader />} />
+				<Route path={ROUTES.notFound} element={<NotFound />} />
+				<Route
+					path={ROUTES.unknown}
+					element={<Navigate to={ROUTES.notFound} replace />}
+				/>
+			</Routes>
+			{isAuthPage || isNotFoundPage ? null : <AsideMobile />}
+			{(pathname !== ROUTES.notFound ||
+				(pathname !== ROUTES.login && loader)) && <Footer />}
+			{loader && <Loader />}
+		</div>
+	);
 }
 
 export default App;

@@ -1,0 +1,17 @@
+.page_not_found_wrapper {
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+	background-color: var(--COLOR-PRIMARY);
+	align-items: center;
+	grid-area: main;
+}
+
+.page_not_found__body {
+	color: var(--COLOR-WHITE);
+	text-align: center;
+}
+
+.homepage__link {
+	text-decoration: underline;
+}

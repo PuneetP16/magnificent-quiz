@@ -1,0 +1,32 @@
+html .btn--icon i {
+	font-size: 2.8rem;
+}
+
+button {
+	font-size: 1.8rem;
+}
+
+.auth__btn--logout {
+	background-color: var(--COLOR-WHITE);
+	padding: 5.5px 6px;
+	color: var(--COLOR-PRIMARY);
+}
+
+.auth__btn--logout:hover {
+	background-color: var(--COLOR-PRIMARY);
+	color: var(--COLOR-WHITE);
+}
+
+.form__signup_btn {
+	background-color: var(--COLOR-WHITE);
+	color: var(--COLOR-PRIMARY);
+}
+
+.form__signup_btn:hover {
+	background-color: var(--COLOR-PRIMARY);
+	color: var(--COLOR-WHITE);
+}
+
+.auth__btn {
+	padding: 5.5px 6px;
+}

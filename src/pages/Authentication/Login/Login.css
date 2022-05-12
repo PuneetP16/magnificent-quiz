@@ -1,0 +1,172 @@
+/* login page */
+:root {
+	--COLOR-INPUT-BORDER: #c5c5c5;
+}
+.center {
+	height: 100%;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+	gap: 1rem;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	border: none;
+	background-color: transparent;
+	box-shadow: none;
+	padding: none;
+}
+.form__signup_btn {
+	opacity: 0.9;
+}
+
+.form__signup_btn:hover {
+	transform: scale(1);
+	opacity: 1;
+}
+
+.form {
+	background-color: var(--COLOR-PRIMARY-DARK-OPP);
+	color: var(--COLOR-TXT);
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: space-around;
+	align-content: space-around;
+	align-items: flex-start;
+	min-width: 50rem;
+	gap: 1rem;
+	padding: 3.5rem;
+	box-shadow: 0 5px 10px var(--COLOR-CARD-BOX-SHADOW0),
+		0 3px 1px -2px var(--COLOR-BOX-SHADOW1), 0 2px 2px var(--COLOR-BOX-SHADOW2),
+		0 1px 5px var(--COLOR-BOX-SHADOW3);
+}
+
+.form__login_btn,
+.form__signup_btn {
+	width: 100%;
+}
+
+.form__signup_btn {
+	opacity: 0.9;
+	background: var(--COLOR-LIST-HOVER);
+}
+
+.form__signup_btn:hover {
+	transform: scale(1);
+	opacity: 1;
+}
+
+.form h2 {
+	align-self: center;
+}
+
+.form > a {
+	width: 100%;
+	display: flex;
+	place-content: center;
+}
+
+.input_box {
+	font-size: 1.6rem;
+	width: 100%;
+	border-radius: 4px;
+	padding: 5px 1rem;
+	border: 1px solid var(--COLOR-INPUT-BORDER);
+	background-color: var(--COLOR-BG);
+}
+
+.input_box:hover {
+	border: 1px solid var(--COLOR-PRIMARY);
+}
+
+.input_box:focus {
+	border: 1px solid var(--COLOR-PRIMARY);
+}
+.label {
+	color: var(--COLOR-TXT);
+	font-weight: 500;
+}
+
+.form__item {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	width: 100%;
+}
+
+.form__item i {
+	position: absolute;
+	right: 2px;
+}
+
+.checkbox {
+	opacity: 0.9;
+}
+
+.checkbox:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.form__actions {
+	align-items: center;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+}
+
+.form__actions label {
+	padding-left: 1rem;
+}
+
+.form__actions .forgot_pass {
+	opacity: 0.8;
+	margin-left: auto;
+	font-weight: 400;
+}
+
+.form__actions .forgot_pass:hover {
+	opacity: 1;
+}
+
+/* Button Css */
+
+.form__actions .btn--link:hover {
+	background-color: inherit;
+	color: inherit;
+}
+.form__actions .btn:hover {
+	box-shadow: none;
+	opacity: 1;
+}
+.form__actions .btn--link {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	color: var(--COLOR-TXT);
+	padding: 4px;
+	text-decoration: none;
+}
+
+.form__password {
+	position: relative;
+}
+
+.form__item .btn--icon {
+	position: absolute;
+	right: 4px;
+	top: 42px;
+	border: none;
+	color: var(--COLOR-PRIMARY);
+}
+
+@media only screen and (max-width: 780px) {
+	.form__item .btn--icon {
+		position: absolute;
+		right: 4px;
+		top: 33px;
+	}
+}
