@@ -1,0 +1,47 @@
+@import url("https://magnificentui.netlify.app/src/magnificent.css");
+
+.body {
+	background-color: var(--COLOR-BG);
+	display: grid;
+	min-height: 100vh;
+	transition: all 0.3s ease-in;
+	grid-template-columns: 26rem 1fr;
+	grid-template-rows: 5.5rem 1fr 5.2rem;
+	grid-template-areas:
+		"header header"
+		"aside main"
+		"footer footer";
+}
+/* 
+.home {
+	background-color: var(--COLOR-BG);
+	display: grid;
+	min-height: 100vh;
+	transition: all 0.3s ease-in;
+	grid-template-columns: 26rem 1fr;
+	grid-template-rows: 5.5rem 1fr 5.2rem;
+	grid-template-areas:
+		"header header"
+		"aside main"
+		"footer footer";
+} */
+
+/* .auth {
+	grid-template-columns: 1fr;
+	grid-template-rows: 5.5rem 1fr 5.2rem;
+	grid-template-areas:
+		"header"
+		"main"
+		"footer";
+}
+
+.not_found_page {
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+	grid-template-areas: "main";
+}
+
+.main {
+	grid-area: main;
+} */
+
