@@ -3,16 +3,20 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { ThemeToggle } from "components/UI/ThemeToggle/ThemeToggle";
 import { useAlert, useAuth } from "../../../../contexts";
+import { ROUTES } from "utils/routes";
 
 export const CTA = () => {
-	const { isAuth, toggleAuth } = useAuth();
+	const { authState, authDispatch } = useAuth();
 	const { pathname } = useLocation();
 	const { setAlert } = useAlert();
+	const isAuth = !!authState?.token;
 
 	const logoutHandler = () => {
 		if (isAuth) {
-			localStorage.removeItem("videoToken");
-			toggleAuth();
+			localStorage.removeItem(ROUTES.localStorageKey);
+			authDispatch({
+				type: "LOGOUT",
+			});
 			setAlert((a) => ({
 				...a,
 				visibility: true,
