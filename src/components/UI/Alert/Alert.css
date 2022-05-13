@@ -1,0 +1,43 @@
+.alert {
+	width: fit-content;
+	border: 0;
+	border-radius: 1rem;
+	color: var(--COLOR-WHITE);
+	cursor: default;
+	font-weight: 500;
+	padding: 1.2rem 1.5rem;
+	text-align: left;
+	position: absolute;
+	top: 8rem;
+	right: 1.5rem;
+	z-index: var(--z-index-2);
+}
+
+.alert i {
+	color: var(--COLOR-WHITE);
+	font-size: 1.5rem;
+}
+
+.alert--danger {
+	background-color: #c84949;
+	border: 0;
+}
+
+@media only screen and (max-width: 860px) {
+	.alert {
+		top: 14rem;
+	}
+
+	body .note_editor_section {
+		padding: 1.5rem;
+		padding-bottom: 0;
+	}
+
+	.note_lisiting_section > h3 {
+		text-align: center;
+	}
+
+	.scroll_to_top_icon {
+		bottom: 12rem;
+	}
+}

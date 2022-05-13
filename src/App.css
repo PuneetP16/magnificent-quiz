@@ -1,5 +1,3 @@
-@import url("https://magnificentui.netlify.app/src/magnificent.css");
-
 .body {
 	background-color: var(--COLOR-BG);
 	display: grid;
@@ -12,7 +10,7 @@
 		"aside main"
 		"footer footer";
 }
-/* 
+
 .home {
 	background-color: var(--COLOR-BG);
 	display: grid;
@@ -24,11 +22,11 @@
 		"header header"
 		"aside main"
 		"footer footer";
-} */
+}
 
-/* .auth {
+.auth {
 	grid-template-columns: 1fr;
-	grid-template-rows: 5.5rem 1fr 5.2rem;
+	grid-template-rows: 7rem 1fr 5.2rem;
 	grid-template-areas:
 		"header"
 		"main"
@@ -43,5 +41,4 @@
 
 .main {
 	grid-area: main;
-} */
-
+}
