@@ -6,6 +6,7 @@ import {
 	LoaderProvider,
 	ScrollToTopProvider,
 	AlertProvider,
+	QuizProvider,
 } from "contexts";
 
 const MagnificentContext = createContext();
@@ -22,7 +23,9 @@ export const MagnificentProvider = ({ children }) => {
 						<ScrollToTopProvider>
 							<AuthProvider>
 								<ThemeProvider>
-									<LoaderProvider>{children}</LoaderProvider>
+									<LoaderProvider>
+										<QuizProvider>{children}</QuizProvider>
+									</LoaderProvider>
 								</ThemeProvider>
 							</AuthProvider>
 						</ScrollToTopProvider>

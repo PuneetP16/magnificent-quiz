@@ -14,4 +14,5 @@ export const ROUTES = {
 	notFound: "pagenotfound",
 	unknown: "*",
 	localStorageKey: "magnificent-quiz-token",
+	quizQuestionData: "quiz-question-data",
 };

@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		localStorage.setItem(ROUTES.localStorageKey, JSON.stringify(authState));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [authState.token]);
 
 	const value = { authState, authDispatch };

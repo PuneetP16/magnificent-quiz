@@ -64,11 +64,11 @@
 	gap: 2rem;
 }
 
-.video__items {
+.quiz__items {
 	display: flex;
 	flex-flow: row wrap;
 	gap: 2rem;
-	margin-bottom: 10rem;
+	margin-bottom: 1.3rem;
 }
 
 .categories__list {
@@ -81,7 +81,7 @@
 		text-align: center;
 	}
 
-	.video__items {
+	.quiz__items {
 		justify-content: center;
 		text-align: center;
 	}

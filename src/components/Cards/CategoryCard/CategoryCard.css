@@ -1,0 +1,109 @@
+.quiz_category_card {
+	margin: 1rem 2rem 1rem 0;
+	border-radius: 10px;
+}
+
+.category__image {
+	border-radius: 10px;
+}
+
+.category__image:hover {
+	opacity: 0.9;
+}
+
+.card--quiz_popular,
+.card--quiz_popular .category__image,
+.card--quiz_trending,
+.card--quiz_trending .category__image {
+	width: 34rem;
+}
+
+.card--quiz_popular {
+	height: 28rem;
+}
+
+.card--quiz_popular .category__image {
+	height: 28rem;
+	object-fit: cover;
+}
+
+.card--quiz_trending {
+	height: 20rem;
+}
+
+.card--quiz_trending .category__image {
+	height: 18rem;
+	object-fit: cover;
+}
+
+.quiz_time--section {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 1rem;
+}
+
+.card__title {
+	font-size: 2rem;
+	margin-top: 5px;
+	text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+	.card--quiz_popular,
+	.card--quiz_popular .category__image,
+	.card--quiz_trending,
+	.card--quiz_trending .category__image {
+		width: 34rem;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.quiz_category_card {
+		margin: 1rem 1rem 1rem 0;
+	}
+
+	.card--quiz_popular,
+	.card--quiz_popular .category__image,
+	.card--quiz_trending,
+	.card--quiz_trending .category__image {
+		width: 13rem;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.quiz_category_card {
+		margin: 1rem 1rem 1rem 0;
+	}
+
+	.card--quiz_popular,
+	.card--quiz_popular .category__image,
+	.card--quiz_trending,
+	.card--quiz_trending .category__image {
+		width: 10rem;
+	}
+
+	.quiz_time--section {
+		padding: 0 5px;
+		margin: auto;
+	}
+
+	.card-title {
+		font-size: 1rem;
+		margin-top: 6px;
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.quiz_category_card {
+		margin: 1rem 1rem 1rem 0;
+	}
+
+	.card--quiz_popular,
+	.card--quiz_popular .category__image,
+	.card--quiz_trending,
+	.card--quiz_trending .category__image {
+		width: 16rem;
+	}
+}
