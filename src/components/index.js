@@ -11,4 +11,5 @@ export { Loader } from "components/UI/Loader/Loader";
 export { Modal } from "components/UI/Modal/Modal";
 export { SearchBox } from "components/UI/Header/SearchBox/SearchBox";
 export { SearchBoxMobile } from "components/UI/Header/SearchBox/SearchBoxMobile";
+export { CategoryCard } from "./Cards/CategoryCard/CategoryCard";
 export { ThemeToggle } from "components/UI/ThemeToggle/ThemeToggle";

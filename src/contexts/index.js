@@ -7,3 +7,4 @@ export {
 } from "contexts/magnificentContext";
 export { ScrollToTopProvider } from "contexts/scrollToTopContext";
 export { AlertProvider, useAlert } from "contexts/alertContext";
+export { QuizProvider, useQuiz } from "./quizContext";

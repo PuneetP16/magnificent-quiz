@@ -9,12 +9,16 @@ import {
 import {
 	firebaseAuth,
 	firestore,
-	collection,
+	// collection,
 	doc,
-	addDoc,
+	// addDoc,
 	updateDoc,
-	deleteDoc,
+	// deleteDoc,
+	realTimeDBRef,
+	firebaseRealtimeDB,
 } from "firebase.config";
+import { child, get } from "firebase/database";
+import { ROUTES } from "./routes";
 
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
@@ -171,6 +175,29 @@ export const passwordResetHandler = (email, setAlert) => {
 			text: "Check your mailbox, to reset password",
 			type: "alert--success",
 		}));
+	} catch (error) {
+		setAlert((a) => ({
+			...a,
+			visibility: true,
+			text: error.message,
+			type: "alert--info",
+		}));
+	}
+};
+
+export const getAllQuizQuestions = async (
+	setAlert,
+	allQuizQuestions,
+	setAllQuizQuestions
+) => {
+	const dbRef = realTimeDBRef(firebaseRealtimeDB);
+	try {
+		const allQuestions = await get(child(dbRef, "quizDb"));
+		setAllQuizQuestions(allQuestions.val());
+
+		if (allQuizQuestions.length > 1) {
+			localStorage.setItem(ROUTES.quizQuestionData, allQuestions.val());
+		}
 	} catch (error) {
 		setAlert((a) => ({
 			...a,
