@@ -27,4 +27,7 @@ export const bxIcons = {
 	watchLater: <i className="bx bx-stopwatch"></i>,
 	watchLaterSelected: <i className="bx bxs-stopwatch"></i>,
 	history: <i className="bx bx-history"></i>,
+	timeLeft: <i className="bx bx-time-five"></i>,
+	checkCircle: <i className="bx bx-check-circle"></i>,
+	book: <i className="bx bx-book"></i>,
 };

@@ -1,9 +1,11 @@
+import { useModal } from "contexts";
 import "./Modal.css";
 
-export const Modal = ({ modalClass, setModalVisibility, children }) => {
+export const Modal = ({ modalClass, children }) => {
+	const { setModal } = useModal();
 	const hideModal = (e) => {
 		if (e.target.classList.contains("modal__wrapper")) {
-			setModalVisibility(false);
+			setModal(false);
 		}
 	};
 	return (

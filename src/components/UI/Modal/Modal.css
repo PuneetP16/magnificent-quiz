@@ -5,8 +5,9 @@
 	width: 100%;
 	height: 100%;
 	transform: translate(-50%, -50%);
-	/* backdrop-filter: blur(4px); */
+	/* backdrop-filter: blur(2px); */
 	z-index: var(--z-index-2);
+	background-color: rgba(0, 0, 0, 0.45);
 }
 
 .modal__wrapper_center_child {

@@ -16,8 +16,8 @@ export const Login = () => {
 	const { authDispatch } = useAuth();
 
 	const [loginData, setLoginData] = useState({
-		email: "",
-		password: "",
+		email: "test@test.com",
+		password: "test@Test1",
 		rememberMe: "",
 	});
 

@@ -17,14 +17,15 @@ export const QuizProvider = ({ children }) => {
 		initialQuizQuestionData ?? []
 	);
 
+	const [score, setScore] = useState({ current: 0, total: 0 });
+
 	useEffect(() => {
-		console.log(allQuizQuestions);
 		if (allQuizQuestions.length < 1) {
 			getAllQuizQuestions(setAlert, allQuizQuestions, setAllQuizQuestions);
 		}
 	}, [allQuizQuestions, setAlert]);
 
-	const value = { allQuizQuestions, setAllQuizQuestions };
+	const value = { allQuizQuestions, setAllQuizQuestions, score, setScore };
 
 	return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
 };
