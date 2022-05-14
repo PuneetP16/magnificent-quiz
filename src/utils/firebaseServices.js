@@ -9,11 +9,8 @@ import {
 import {
 	firebaseAuth,
 	firestore,
-	// collection,
 	doc,
-	// addDoc,
 	updateDoc,
-	// deleteDoc,
 	realTimeDBRef,
 	firebaseRealtimeDB,
 } from "firebase.config";

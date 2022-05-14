@@ -4,7 +4,6 @@ import "./Modal.css";
 export const Modal = ({ modalClass, children }) => {
 	const { setModal } = useModal();
 	const hideModal = (e) => {
-		console.log(e.target.classList.contains("modal__wrapper"), "MODAL")
 		if (e.target.classList.contains("modal__wrapper")) {
 			setModal(false);
 		}
