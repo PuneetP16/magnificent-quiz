@@ -1,29 +1,46 @@
-import { useModal, useQuiz } from "contexts";
+import { useAlert, useAuth, useModal, useQuiz } from "contexts";
 import { bxIcons } from "data/icons";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { updateDbUserData } from "utils/firebaseServices";
 import { ROUTES } from "utils/routes";
 import "./ScoreModal.css";
 
 export const ScoreModal = () => {
-	const { setModal } = useModal();
-	const { score } = useQuiz();
+	const { modal, setModal } = useModal();
+	const { score, playedQuizData } = useQuiz();
+	const { setAlert } = useAlert();
+
+	const {
+		authState: { token, email },
+	} = useAuth();
+
+	useEffect(() => {
+		if (token) {
+			updateDbUserData(email, playedQuizData, setAlert);
+		}
+	}, [modal, token]);
 	return (
 		<section className="scores__section">
 			<section className="score__header">
 				<div className="h3">Score</div>
-				<div
+				<Link
+					to="/home"
 					className="btn btn--outline--primary btn--circular btn--dismiss"
 					title="Close Modal"
 					onClick={() => setModal(false)}
 				>
 					{bxIcons.cross}
-				</div>
+				</Link>
 			</section>
 			<section className="score__text">
-				You Scored: <span>{score.current}</span>
+				You Scored: <span>{score}</span>
 			</section>
 			<section className="score__text">
-				Your Total Score: <span>{score.total}</span>
+				Highest so far: <span>{playedQuizData.highestScore}</span>
+			</section>
+			<section className="score__text">
+				Your Total Score: <span>{playedQuizData.totalScore}</span>
 			</section>
 			<section className="scores__btn">
 				<Link

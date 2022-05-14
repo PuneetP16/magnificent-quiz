@@ -4,6 +4,7 @@ import "./Modal.css";
 export const Modal = ({ modalClass, children }) => {
 	const { setModal } = useModal();
 	const hideModal = (e) => {
+		console.log(e.target.classList.contains("modal__wrapper"), "MODAL")
 		if (e.target.classList.contains("modal__wrapper")) {
 			setModal(false);
 		}
@@ -13,7 +14,7 @@ export const Modal = ({ modalClass, children }) => {
 			className={`${
 				modalClass ? modalClass : "modal__wrapper"
 			} modal__wrapper_center_child`}
-			onClick={(e) => hideModal(e)}
+			onClick={hideModal}
 		>
 			{children}
 		</div>

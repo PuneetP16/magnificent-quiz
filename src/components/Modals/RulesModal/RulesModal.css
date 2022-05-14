@@ -6,8 +6,14 @@
 	border-radius: 8px;
 	min-width: 30rem;
 	max-width: 50rem;
+	margin: 5px;
+	color: var(--COLOR-BLACK);
 }
 
+.rules__section .h3,
+.scores__section .h3 {
+	color: var(--COLOR-BLACK);
+}
 .scores__section {
 	display: flex;
 	flex-direction: column;

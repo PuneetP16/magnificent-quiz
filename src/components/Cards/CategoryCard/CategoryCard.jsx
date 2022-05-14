@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./CategoryCard.css";
 
-export const CategoryCard = ({ category, time, isPopular }) => {
+export const CategoryCard = ({ category, isPopular }) => {
 	return (
 		<article
 			className={

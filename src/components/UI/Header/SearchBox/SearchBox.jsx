@@ -8,22 +8,12 @@ export const SearchBox = () => {
 	const visibility = (() =>
 		pathname === "/login" || pathname === "/signup" ? "invisible" : "")();
 
-	// const { filterDispatch, initialFilterState } = useFilter();
-
 	const [query, setQuery] = useState("");
 	const navigate = useNavigate();
 
 	const onChangeSearchHandler = (e) => {
 		setQuery(e.target.value);
 	};
-
-	// useEffect(() => {
-	// 	if (query) {
-	// 		filterDispatch({ type: "SEARCH", payload: query });
-	// 	} else {
-	// 		filterDispatch({ type: "RESET", payload: initialFilterState });
-	// 	}
-	// }, [query]);
 
 	const passQuery = (e) => {
 		e.preventDefault();

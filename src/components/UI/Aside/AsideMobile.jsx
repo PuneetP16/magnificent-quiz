@@ -24,15 +24,10 @@ export const AsideMobile = () => {
 					{bxIcons.playlist}
 				</Link>
 
-				<Link to={ROUTES.notifications} className="nav__list_item">
-					<PhHeartDuotone />
-				</Link>
-				<Link to={ROUTES.support} className="nav__list_item">
-					<IcOutlineBookmarks />
-				</Link>
 				<Link to={ROUTES.settings} className="nav__list_item">
 					{bxIcons.history}
 				</Link>
+				
 				<Link to={ROUTES.profile} className="nav__list_item">
 					{bxIcons.userCircle}
 				</Link>

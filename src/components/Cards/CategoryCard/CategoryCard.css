@@ -54,7 +54,7 @@
 	.card--quiz_popular .category__image,
 	.card--quiz_trending,
 	.card--quiz_trending .category__image {
-		width: 34rem;
+		width: 42rem;
 	}
 }
 
@@ -67,7 +67,7 @@
 	.card--quiz_popular .category__image,
 	.card--quiz_trending,
 	.card--quiz_trending .category__image {
-		width: 13rem;
+		width: 20rem;
 	}
 }
 
@@ -80,7 +80,7 @@
 	.card--quiz_popular .category__image,
 	.card--quiz_trending,
 	.card--quiz_trending .category__image {
-		width: 10rem;
+		width: 15rem;
 	}
 
 	.quiz_time--section {

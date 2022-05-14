@@ -19,6 +19,7 @@ import {
 } from "firebase.config";
 import { child, get } from "firebase/database";
 import { ROUTES } from "./routes";
+import { getDoc, setDoc } from "firebase/firestore";
 
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
@@ -111,7 +112,6 @@ export const emailLoginHandler = async (
 				user: response.user.providerData[0],
 			},
 		});
-		console.log(response);
 
 		setAlert((a) => ({
 			...a,
@@ -206,4 +206,35 @@ export const getAllQuizQuestions = async (
 			type: "alert--info",
 		}));
 	}
+};
+
+export const addUserToDb = async (email, userData, setAlert) => {
+	const addUser = doc(firestore, `users/${email}`);
+	try {
+		await setDoc(addUser, userData, { merge: true });
+	} catch (error) {
+		setAlert((a) => ({
+			...a,
+			visibility: true,
+			text: error.message,
+			type: "alert--info",
+		}));
+	}
+};
+
+export const fetchUserData = async (email, setAlert) => {
+	const selectedUser = doc(firestore, `users/${email}`);
+	let response;
+	try {
+		response = await getDoc(selectedUser);
+	} catch (error) {
+		setAlert((a) => ({
+			...a,
+			visibility: true,
+			text: error.message,
+			type: "alert--info",
+		}));
+	}
+
+	return response;
 };

@@ -26,15 +26,6 @@ export const Aside = () => {
 					{bxIcons.playlist}
 					<span className="nav__item">Category</span>
 				</Link>
-
-				<Link to={ROUTES.notifications} className="nav__list_item">
-					<PhHeartDuotone />
-					<span className="nav__item">Notifications</span>
-				</Link>
-				<Link to={ROUTES.support} className="nav__list_item">
-					<IcOutlineBookmarks />
-					<span className="nav__item">Support</span>
-				</Link>
 				<Link to={ROUTES.settings} className="nav__list_item">
 					{bxIcons.history}
 					<span className="nav__item">Settings</span>

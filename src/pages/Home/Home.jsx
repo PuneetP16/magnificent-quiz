@@ -31,8 +31,8 @@ export const Home = () => {
 					<ul className="quiz__items">{popularQuiz}</ul>
 				</section>
 				<section className="homepage__section items_container">
-					<h3 className="h3 section__heading">Trending Categories</h3>
-					<ul className="categories__items">{trendingQuiz}</ul>
+					<h3 className="h3 section__heading ">Trending Categories</h3>
+					<ul className="categories__items bottom__buffer">{trendingQuiz}</ul>
 				</section>
 			</main>
 		</div>

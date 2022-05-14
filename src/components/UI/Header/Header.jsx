@@ -8,7 +8,7 @@ export const Header = () => {
 			<Link className="brand__text grid-center" to="/">
 				Magnificent Quiz
 			</Link>
-			<SearchBox />
+			{/* <SearchBox /> */}
 			<CTA />
 		</header>
 	);

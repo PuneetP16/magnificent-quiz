@@ -17,7 +17,7 @@ export const Quiz = () => {
 
 	useEffect(() => {
 		setModal(true);
-		setScore((score) => ({ ...score, current: 0 }));
+		setScore(0);
 	}, []);
 
 	return (
