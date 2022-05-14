@@ -30,4 +30,6 @@ export const bxIcons = {
 	timeLeft: <i className="bx bx-time-five"></i>,
 	checkCircle: <i className="bx bx-check-circle"></i>,
 	book: <i className="bx bx-book"></i>,
+	google: <i className="bx bxl-google"></i>,
+	facebook: <i className="bx bxl-facebook-circle"></i>,
 };
