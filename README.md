@@ -1,6 +1,6 @@
 # Magnificent Quiz in React
 
-Magnificent Quiz is a Quiz App, where users can play quizes by category.
+Magnificent Quiz is a Quiz App, where users can play quizzes by category.
 
 ## Authors
 
@@ -94,7 +94,7 @@ Magnificent Quiz is a Quiz App, where users can play quizes by category.
 To run this app locally on your machine, clone the repo to your local machine.
 
     1. `git clone https://github.com/PuneetP16/magnificent-quiz.git`
-    2. `cd magnificent-store-react`
+    2. `cd magnificent-quiz`
     In the project directory, you can run
     3. `npm install`
     4. `npm start`
