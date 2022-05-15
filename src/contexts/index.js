@@ -8,3 +8,4 @@ export {
 export { ScrollToTopProvider } from "contexts/scrollToTopContext";
 export { AlertProvider, useAlert } from "contexts/alertContext";
 export { QuizProvider, useQuiz } from "./quizContext";
+export { ModalProvider, useModal } from "./modalContext";

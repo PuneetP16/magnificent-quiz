@@ -8,6 +8,7 @@ import {
 	AlertProvider,
 	QuizProvider,
 } from "contexts";
+import { ModalProvider } from "./modalContext";
 
 const MagnificentContext = createContext();
 
@@ -20,15 +21,17 @@ export const MagnificentProvider = ({ children }) => {
 			<BrowserRouter>
 				<LoaderProvider>
 					<AlertProvider>
-						<ScrollToTopProvider>
-							<AuthProvider>
-								<ThemeProvider>
-									<LoaderProvider>
-										<QuizProvider>{children}</QuizProvider>
-									</LoaderProvider>
-								</ThemeProvider>
-							</AuthProvider>
-						</ScrollToTopProvider>
+						<ModalProvider>
+							<ScrollToTopProvider>
+								<AuthProvider>
+									<ThemeProvider>
+										<LoaderProvider>
+											<QuizProvider>{children}</QuizProvider>
+										</LoaderProvider>
+									</ThemeProvider>
+								</AuthProvider>
+							</ScrollToTopProvider>
+						</ModalProvider>
 					</AlertProvider>
 				</LoaderProvider>
 			</BrowserRouter>

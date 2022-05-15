@@ -8,7 +8,7 @@ import {
 	SearchBoxMobile,
 } from "components";
 import { useAlert, useAuth, useLoader } from "contexts";
-import { Category, Home, Login, NotFound, SignUp } from "pages";
+import { Category, Home, Login, NotFound, Quiz, SignUp } from "pages";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { ROUTES } from "utils/routes";
 import "./App.css";
@@ -46,7 +46,7 @@ function App() {
 			<Routes>
 				<Route path={ROUTES.home} element={<Home />} />
 				<Route path={ROUTES.category} element={<Category />} />
-				<Route path={ROUTES.question} element={<>question Page</>} />
+				<Route path={ROUTES.question} element={<Quiz />} />
 				<Route path={ROUTES.account} element={<>account Page</>} />
 				<Route path={ROUTES.leaderboard} element={<>leaderboard Page</>} />
 				<Route path={ROUTES.settings} element={<>settings Page</>} />

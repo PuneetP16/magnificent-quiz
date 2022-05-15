@@ -163,6 +163,14 @@ a {
 	color: var(--COLOR-PRIMARY);
 }
 
+body .form__google {
+	padding: 8px 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
 @media only screen and (max-width: 780px) {
 	.form__item .btn--icon {
 		position: absolute;

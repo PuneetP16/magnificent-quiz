@@ -5,7 +5,11 @@ import { useDocumentTitle } from "customHooks";
 import "./Login.css";
 import { bxIcons } from "data/icons";
 import { useAlert, useAuth } from "contexts";
-import { emailLoginHandler } from "utils/firebaseServices";
+import {
+	emailLoginHandler,
+	googleLoginHandler,
+	facebookLoginHandler,
+} from "utils/firebaseServices";
 import { ROUTES } from "utils/routes";
 
 export const Login = () => {
@@ -16,8 +20,8 @@ export const Login = () => {
 	const { authDispatch } = useAuth();
 
 	const [loginData, setLoginData] = useState({
-		email: "",
-		password: "",
+		email: "test@test.com",
+		password: "test@Test1",
 		rememberMe: "",
 	});
 
@@ -37,12 +41,18 @@ export const Login = () => {
 		});
 	};
 
+	const googleSigninHandler = () => {
+		googleLoginHandler(authDispatch, setAlert);
+	};
+	const facebookSigninHandler = () => {
+		facebookLoginHandler(authDispatch, setAlert);
+	};
+
 	const emailRegex =
 		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
-		console.log(loginData);
 
 		if (loginData.email.trim() === "" || loginData.password.trim() === "") {
 			setAlert((a) => ({
@@ -73,7 +83,11 @@ export const Login = () => {
 	return (
 		<main>
 			<div className="center">
-				<form onSubmit={onSubmitHandler} className="form flex" method="get">
+				<form
+					onSubmit={(e) => e.preventDefault()}
+					className="form flex"
+					method="get"
+				>
 					<h2 className="h3">Login</h2>
 					<InputTypeOne
 						wrapperClassName="form__item form__email form__input_box"
@@ -127,7 +141,26 @@ export const Login = () => {
 							Forgot your Password?
 						</button>
 					</section>
-					<button className="form__login_btn btn btn--primary">Login</button>
+					<button
+						onClick={onSubmitHandler}
+						className="form__login_btn btn btn--primary"
+					>
+						Login
+					</button>
+					<button
+						onClick={googleSigninHandler}
+						className="form__login_btn form__google btn btn--outline--primary"
+					>
+						{bxIcons.google}
+						<span>Login with Google</span>
+					</button>
+					<button
+						onClick={facebookSigninHandler}
+						className="form__login_btn form__google btn btn--outline--primary"
+					>
+						{bxIcons.facebook}
+						<span>Login with Facebook</span>
+					</button>
 					<Link className="form__signup_btn btn btn--icon" to={ROUTES.signup}>
 						New here? Create New Account
 						{bxIcons.rightArrow}
