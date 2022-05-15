@@ -29,7 +29,8 @@ export const ScoreModal = () => {
 		<section className="scores__section">
 			<section className="score__header">
 				<div className="h3">Score</div>
-				<Link to={ROUTES.home}
+				<Link
+					to={ROUTES.home}
 					className="btn btn--outline--primary btn--circular btn--dismiss"
 					title="Close Modal"
 					onClick={closeModal}

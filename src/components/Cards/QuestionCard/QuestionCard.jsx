@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import "./QuestionCard.css";
 
 export const QuestionCard = ({ category, setIsQuizComplete }) => {
+	const timerValue = 5;
 	const totalQuestions = category?.questions?.length;
 	const [questionIndex, setQuestionIndex] = useState(0);
-	const [timer, setTimer] = useState(10);
+	const [timer, setTimer] = useState(timerValue);
 	const questionNumber = questionIndex + 1;
 	const [answer, setAnswer] = useState({
 		selected: "",
@@ -26,7 +27,7 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 		{
 			icon: bxIcons.timeLeft,
 			label: "time left",
-			value: `${timer === "stop" ? 10 : timer} sec`,
+			value: `${timer === "stop" ? 0 : timer} sec`,
 		},
 		{ icon: bxIcons.checkCircle, label: "Score", value: `${score}` },
 		{
@@ -54,7 +55,7 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 		}
 
 		setTimeout(() => {
-			setTimer(10);
+			setTimer(timerValue);
 			setAnswer((a) => ({ ...a, selected: "" }));
 			if (questionIndex < totalQuestions - 1) {
 				setQuestionIndex((prevIndex) => prevIndex + 1);
@@ -93,32 +94,37 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 						if (questionIndex < totalQuestions - 1) {
 							setQuestionIndex((prevIndex) => prevIndex + 1);
 						}
-						setTimer(5);
+						setTimer(timerValue);
 					}
 					return () => clearTimeout(timeoutId);
-				}
-			} else {
-				{
-					if (answer.wrong < 1) {
-						setPlayedQuizData((prevData) => ({
-							...prevData,
-							gameWins: playedQuizData.gameWins + 1,
-						}));
-					}
-
-					setPlayedQuizData((prevData) => ({
-						...prevData,
-						gamePlayed: playedQuizData.gamePlayed + 1,
-						highestScore:
-							playedQuizData.highestScore > score
-								? playedQuizData.highestScore
-								: score,
-						totalScore: playedQuizData.totalScore + score,
-					}));
 				}
 			}
 		}
 	}, [timer, questionIndex, modal]);
+
+	useEffect(() => {
+		if (questionIndex + 1 === totalQuestions && timer === "stop") {
+			setIsQuizComplete(true);
+
+			if (answer.wrong < 1) {
+				setPlayedQuizData((prevData) => ({
+					...prevData,
+					gameWins: playedQuizData.gameWins + 1,
+				}));
+			}
+			setPlayedQuizData((prevData) => ({
+				...prevData,
+				gamePlayed: playedQuizData.gamePlayed + 1,
+				highestScore:
+					playedQuizData.highestScore > score
+						? playedQuizData.highestScore
+						: score,
+				totalScore: playedQuizData.totalScore + score,
+			}));
+
+			setModal(true);
+		}
+	}, [questionIndex, timer]);
 
 	return (
 		<article className="question__card">
