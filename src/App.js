@@ -67,7 +67,7 @@ function App() {
 					path={ROUTES.settings}
 					element={
 						<h3 style={{ paddingTop: "2rem" }}>
-							leaderboard Page Under Construction...
+							Settings Page Under Construction...
 						</h3>
 					}
 				/>
