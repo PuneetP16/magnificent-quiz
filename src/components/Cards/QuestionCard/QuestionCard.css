@@ -3,6 +3,7 @@
 	--COLOR-CORRECT: #7fffd4;
 	--COLOR-WRONG: #453326;
 	--COLOR-BG-WRONG: #ed8181;
+	--COLOR-HOVER-OPTIONS: rgba(0, 0, 0, 0.1);
 }
 
 .question__card {
@@ -10,8 +11,6 @@
 }
 
 .question__section {
-	padding: 1rem;
-	padding-left: 0;
 	display: flex;
 	flex-flow: column nowrap;
 	gap: 2rem;
@@ -24,7 +23,6 @@
 }
 
 .question__container {
-	padding: 1rem;
 	display: flex;
 	flex-flow: column wrap;
 	gap: 1rem;
@@ -78,11 +76,11 @@
 	gap: 2rem;
 	grid-template-columns: 1fr 1fr;
 	margin: 3rem 0 1.6rem;
+	margin-bottom: 10rem;
 }
 
 .option__container {
 	background-color: var(--COLOR-WHITE);
-
 	border: none;
 	border-radius: 15px;
 	font-size: 2.2rem;
@@ -92,10 +90,9 @@
 	box-shadow: 0 4px 12px var(--COLOR-BS-OPTION);
 	cursor: pointer;
 }
-
 .option__container:hover {
-	/* border: 1px solid; */
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: var(--COLOR-HOVER-OPTIONS);
+	color: var(--COLOR-TXT);
 }
 
 .option__container:active {
@@ -106,6 +103,16 @@
 	background-color: var(--COLOR-CORRECT);
 	color: var(--COLOR-PRIMARY);
 	font-weight: 500;
+}
+
+.correct_answer:hover {
+	background-color: var(--COLOR-CORRECT);
+	opacity: 1;
+}
+
+.wrong_answer:hover {
+	background-color: var(--COLOR-BG-WRONG);
+	opacity: 0.7;
 }
 
 .wrong_answer {

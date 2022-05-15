@@ -16,7 +16,7 @@ export const Category = () => {
 				<section className="homepage__section categories">
 					<h3 className="h3 section__heading">All Quizes Category</h3>
 
-					<ul className="quiz__items">{allQuizes}</ul>
+					<ul className="quiz__items bottom__buffer">{allQuizes}</ul>
 				</section>
 			</main>
 		</div>

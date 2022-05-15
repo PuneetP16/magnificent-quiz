@@ -41,15 +41,36 @@ function App() {
 			{pathname !== ROUTES.notFound && <Header />}
 
 			{isAuthPage || isNotFoundPage ? null : <Aside />}
-			{pathname !== ROUTES.notFound && <SearchBoxMobile />}
+			{/* {pathname !== ROUTES.notFound && <SearchBoxMobile />} */}
 
 			<Routes>
 				<Route path={ROUTES.home} element={<Home />} />
 				<Route path={ROUTES.category} element={<Category />} />
 				<Route path={ROUTES.question} element={<Quiz />} />
-				<Route path={ROUTES.account} element={<>account Page</>} />
-				<Route path={ROUTES.leaderboard} element={<>leaderboard Page</>} />
-				<Route path={ROUTES.settings} element={<>settings Page</>} />
+				<Route
+					path={ROUTES.profile}
+					element={
+						<h3 style={{ paddingTop: "2rem" }}>
+							profile Page Under Construction...
+						</h3>
+					}
+				/>
+				<Route
+					path={ROUTES.leaderboard}
+					element={
+						<h3 style={{ paddingTop: "2rem" }}>
+							leaderboard Page Under Construction...
+						</h3>
+					}
+				/>
+				<Route
+					path={ROUTES.settings}
+					element={
+						<h3 style={{ paddingTop: "2rem" }}>
+							leaderboard Page Under Construction...
+						</h3>
+					}
+				/>
 				<Route path={ROUTES.support} element={<>Support Page</>} />
 				<Route
 					path={ROUTES.login}

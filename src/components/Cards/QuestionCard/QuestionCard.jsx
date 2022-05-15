@@ -13,21 +13,22 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 		isCorrect: false,
 		correctClass: "correct_answer",
 		wrongClass: "wrong_answer",
+		correct: 0,
+		wrong: 0,
 	});
 
 	const { modal, setModal } = useModal();
 
-	const { score, setScore } = useQuiz();
+	const { score, setScore, playedQuizData, setPlayedQuizData } = useQuiz();
 
 	const selectedQuestion = category?.questions[questionIndex];
-
 	const quizBoard = [
 		{
 			icon: bxIcons.timeLeft,
 			label: "time left",
 			value: `${timer === "stop" ? 10 : timer} sec`,
 		},
-		{ icon: bxIcons.checkCircle, label: "Score", value: `${score.current}` },
+		{ icon: bxIcons.checkCircle, label: "Score", value: `${score}` },
 		{
 			icon: bxIcons.book,
 			label: "Question",
@@ -39,9 +40,19 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 		setAnswer((a) => ({ ...a, selected: selectedAnswer }));
 
 		if (selectedAnswer === selectedQuestion.answer) {
-			setAnswer((a) => ({ ...a, isCorrect: true }));
-			setScore((score) => ({ ...score, current: score.current + 5 }));
+			setAnswer((a) => ({
+				...a,
+				isCorrect: true,
+				correct: answer.correct + 1,
+			}));
+			setScore((score) => score + 5);
+		} else {
+			setAnswer((a) => ({
+				...a,
+				wrong: answer.correct + 1,
+			}));
 		}
+
 		setTimeout(() => {
 			setTimer(10);
 			setAnswer((a) => ({ ...a, selected: "" }));
@@ -51,9 +62,8 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 				setTimer("stop");
 				setIsQuizComplete(true);
 				setModal(true);
-				setScore((score) => ({ ...score, total: score.total + score.current }));
 			}
-		}, 1500);
+		}, 2000);
 	};
 
 	const selectOptionsClass = (option) => {
@@ -87,6 +97,25 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 					}
 					return () => clearTimeout(timeoutId);
 				}
+			} else {
+				{
+					if (answer.wrong < 1) {
+						setPlayedQuizData((prevData) => ({
+							...prevData,
+							gameWins: playedQuizData.gameWins + 1,
+						}));
+					}
+
+					setPlayedQuizData((prevData) => ({
+						...prevData,
+						gamePlayed: playedQuizData.gamePlayed + 1,
+						highestScore:
+							playedQuizData.highestScore > score
+								? playedQuizData.highestScore
+								: score,
+						totalScore: playedQuizData.totalScore + score,
+					}));
+				}
 			}
 		}
 	}, [timer, questionIndex, modal]);
@@ -115,7 +144,7 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 					</div>
 				</div>
 			</section>
-			<section className="answer__section">
+			<section className="answer__section bottom__buffer">
 				{selectedQuestion?.options.map((option, index) => (
 					<div key={index}>
 						<button
