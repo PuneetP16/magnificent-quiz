@@ -29,6 +29,7 @@
 
 .header__nav_btns .badge_base {
 	padding: 2px;
+	border: none;
 }
 
 .header__nav_btns .badge {
@@ -50,6 +51,25 @@
 	box-shadow: none;
 	padding: none;
 	margin-left: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 5px;
+}
+
+.brand__text {
+	cursor: pointer;
+	font-size: 2.6rem;
+	font-weight: bolder;
+	min-width: fit-content;
+	color: var(--COLOR-PRIMARY-THEME);
+	letter-spacing: 1.2px;
+}
+
+.logo__img {
+	display: inline-block;
+	cursor: pointer;
+	height: 2.5rem;
 }
 
 .header__links:hover,
@@ -59,14 +79,6 @@
 
 .header__links:active {
 	color: var(--COLOR-ACTIVE);
-}
-
-.brand__text {
-	cursor: pointer;
-	font-size: 2.6rem;
-	font-weight: 500;
-	width: fit-content;
-	color: var(--COLOR-TXT);
 }
 
 /* Search BOX  */
@@ -169,7 +181,7 @@
 	.header .search_on_header {
 		display: none;
 	}
-/* 
+	/* 
 	.home {
 		grid-template-areas:
 			"header"

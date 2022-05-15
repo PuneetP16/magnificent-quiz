@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "utils/routes";
 import "./RulesModal.css";
 
-export const RulesModal = () => {
+export const RulesModal = ({ setStartQuiz }) => {
 	const { setModal } = useModal();
+
+	const startQuizHandler = () => {
+		setModal(false);
+		setStartQuiz(true);
+	};
 
 	return (
 		<section className="rules__section">
@@ -34,7 +39,7 @@ export const RulesModal = () => {
 			<section className="rules__btn">
 				<button
 					className="btn btn--outline--primary"
-					onClick={() => setModal(false)}
+					onClick={startQuizHandler}
 				>
 					Start Quiz
 				</button>

@@ -3,7 +3,12 @@ import { bxIcons } from "data/icons";
 import { useEffect, useState } from "react";
 import "./QuestionCard.css";
 
-export const QuestionCard = ({ category, setIsQuizComplete }) => {
+export const QuestionCard = ({
+	category,
+	setShowScoreModal,
+	startQuiz,
+	setStartQuiz,
+}) => {
 	const timerValue = 5;
 	const totalQuestions = category?.questions?.length;
 	const [questionIndex, setQuestionIndex] = useState(0);
@@ -18,11 +23,12 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 		wrong: 0,
 	});
 
-	const { modal, setModal } = useModal();
+	const { setModal } = useModal();
 
 	const { score, setScore, playedQuizData, setPlayedQuizData } = useQuiz();
 
 	const selectedQuestion = category?.questions[questionIndex];
+  
 	const quizBoard = [
 		{
 			icon: bxIcons.timeLeft,
@@ -50,21 +56,9 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 		} else {
 			setAnswer((a) => ({
 				...a,
-				wrong: answer.correct + 1,
+				wrong: answer.wrong + 1,
 			}));
 		}
-
-		setTimeout(() => {
-			setTimer(timerValue);
-			setAnswer((a) => ({ ...a, selected: "" }));
-			if (questionIndex < totalQuestions - 1) {
-				setQuestionIndex((prevIndex) => prevIndex + 1);
-			} else {
-				setTimer("stop");
-				setIsQuizComplete(true);
-				setModal(true);
-			}
-		}, 2000);
 	};
 
 	const selectOptionsClass = (option) => {
@@ -83,48 +77,43 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 	};
 
 	useEffect(() => {
-		if (!modal) {
-			if (!(timer === "stop")) {
-				if (!(timer === 0 && questionIndex + 1 === totalQuestions)) {
-					var timeoutId = setTimeout(() => {
-						setTimer((t) => t - 1);
-					}, 1000);
+		let timeoutId = setTimeout(() => {
+			if (startQuiz) {
+				if (timer < 1 || !!answer.selected) {
+					if (questionIndex < totalQuestions - 1) {
+						setQuestionIndex((prevIndex) => prevIndex + 1);
+						setAnswer((a) => ({ ...a, selected: "" }));
+					} else {
+						setShowScoreModal(true);
 
-					if (timer === 0) {
-						if (questionIndex < totalQuestions - 1) {
-							setQuestionIndex((prevIndex) => prevIndex + 1);
+						if (answer.wrong < 1) {
+							setPlayedQuizData((prevData) => ({
+								...prevData,
+								gameWins: playedQuizData.gameWins + 1,
+							}));
 						}
+						setPlayedQuizData((prevData) => ({
+							...prevData,
+							gamePlayed: playedQuizData.gamePlayed + 1,
+							highestScore:
+								playedQuizData.highestScore > score
+									? playedQuizData.highestScore
+									: score,
+							totalScore: playedQuizData.totalScore + score,
+						}));
+
+						setModal(true);
 						setTimer(timerValue);
+						setStartQuiz(false);
 					}
-					return () => clearTimeout(timeoutId);
+					setTimer(timerValue);
+				} else {
+					setTimer((prevTimer) => prevTimer - 1);
 				}
 			}
-		}
-	}, [timer, questionIndex, modal]);
-
-	useEffect(() => {
-		if (questionIndex + 1 === totalQuestions && timer === "stop") {
-			setIsQuizComplete(true);
-
-			if (answer.wrong < 1) {
-				setPlayedQuizData((prevData) => ({
-					...prevData,
-					gameWins: playedQuizData.gameWins + 1,
-				}));
-			}
-			setPlayedQuizData((prevData) => ({
-				...prevData,
-				gamePlayed: playedQuizData.gamePlayed + 1,
-				highestScore:
-					playedQuizData.highestScore > score
-						? playedQuizData.highestScore
-						: score,
-				totalScore: playedQuizData.totalScore + score,
-			}));
-
-			setModal(true);
-		}
-	}, [questionIndex, timer]);
+		}, 1000);
+		return () => clearTimeout(timeoutId);
+	}, [timer, startQuiz]);
 
 	return (
 		<article className="question__card">

@@ -9,7 +9,8 @@ export const Quiz = () => {
 	const { categoryId } = useParams();
 	const { modal, setModal } = useModal();
 
-	const [isQuizComplete, setIsQuizComplete] = useState(false);
+	const [showScoreModal, setShowScoreModal] = useState(false);
+	const [startQuiz, setStartQuiz] = useState(false);
 
 	const selectedCategory = allQuizQuestions.find(
 		(category) => category._id === categoryId
@@ -28,13 +29,15 @@ export const Quiz = () => {
 				</section>
 				<QuestionCard
 					category={selectedCategory}
-					setIsQuizComplete={setIsQuizComplete}
+					setShowScoreModal={setShowScoreModal}
+					startQuiz={startQuiz}
+					setStartQuiz={setStartQuiz}
 				/>
 			</main>
-			{!isQuizComplete
+			{!showScoreModal
 				? modal && (
 						<Modal>
-							<RulesModal />
+							<RulesModal setStartQuiz={setStartQuiz} />
 						</Modal>
 				  )
 				: modal && (
