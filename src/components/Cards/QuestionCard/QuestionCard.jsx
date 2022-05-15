@@ -31,7 +31,7 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 		{ icon: bxIcons.checkCircle, label: "Score", value: `${score}` },
 		{
 			icon: bxIcons.book,
-			label: "Question",		
+			label: "Question",
 			value: `${questionNumber} / ${totalQuestions}`,
 		},
 	];
@@ -61,6 +61,7 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 			} else {
 				setTimer("stop");
 				setIsQuizComplete(true);
+				setModal(true);
 			}
 		}, 2000);
 	};
@@ -115,8 +116,6 @@ export const QuestionCard = ({ category, setIsQuizComplete }) => {
 						totalScore: playedQuizData.totalScore + score,
 					}));
 				}
-
-				setModal(true);
 			}
 		}
 	}, [timer, questionIndex, modal]);

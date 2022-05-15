@@ -19,16 +19,20 @@ export const ScoreModal = () => {
 		if (token) {
 			updateDbUserData(email, playedQuizData, setAlert);
 		}
-	}, [modal, token]);
+	}, [token, modal]);
+
+	const closeModal = () => {
+		setModal(false);
+	};
+
 	return (
 		<section className="scores__section">
 			<section className="score__header">
 				<div className="h3">Score</div>
-				<Link
-					to="/home"
+				<Link to={ROUTES.home}
 					className="btn btn--outline--primary btn--circular btn--dismiss"
 					title="Close Modal"
-					onClick={() => setModal(false)}
+					onClick={closeModal}
 				>
 					{bxIcons.cross}
 				</Link>
