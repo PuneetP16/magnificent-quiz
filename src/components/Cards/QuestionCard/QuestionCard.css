@@ -79,7 +79,7 @@
 	margin-bottom: 10rem;
 }
 
-.option__container {
+.answer__section .option__container {
 	background-color: var(--COLOR-WHITE);
 	border: none;
 	border-radius: 15px;
@@ -88,35 +88,36 @@
 	padding: 3rem 2rem;
 	width: 100%;
 	box-shadow: 0 4px 12px var(--COLOR-BS-OPTION);
+	opacity: 0.8;
 	cursor: pointer;
 }
 
-.option__container:hover {
-	background-color: var(--COLOR-HOVER-OPTIONS);
-	color: var(--COLOR-TXT);
+.answer__section .option__container:hover {
+	opacity: 1;
+	/* color: var(--COLOR-TXT); */
 }
 
-.option__container:active {
+.answer__section .option__container:active {
 	transform: scale(0.95);
 }
 
-.correct_answer {
+.answer__section .correct_answer {
 	background-color: var(--COLOR-CORRECT);
 	color: var(--COLOR-PRIMARY);
 	font-weight: 500;
 }
 
-.correct_answer:hover {
+.answer__section .correct_answer:hover {
 	background-color: var(--COLOR-CORRECT);
 	opacity: 1;
 }
 
-.wrong_answer:hover {
+.answer__section .wrong_answer:hover {
 	background-color: var(--COLOR-BG-WRONG);
 	opacity: 0.7;
 }
 
-.wrong_answer {
+.answer__section .wrong_answer {
 	background-color: var(--COLOR-BG-WRONG);
 	color: var(--COLOR-WRONG);
 }
@@ -126,10 +127,8 @@
 	cursor: not-allowed;
 }
 
-
 @media only screen and (max-width: 760px) {
 	.option__container {
 		font-size: 1.5rem;
 	}
-	
 }

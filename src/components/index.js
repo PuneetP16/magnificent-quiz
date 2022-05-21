@@ -16,3 +16,4 @@ export { ThemeToggle } from "components/UI/ThemeToggle/ThemeToggle";
 export { QuestionCard } from "./Cards/QuestionCard/QuestionCard";
 export { RulesModal } from "./Modals/RulesModal/RulesModal";
 export { ScoreModal } from "./Modals/ScoreModal/ScoreModal";
+export { SummaryCard } from "./Cards/SummaryCard/SummaryCard";

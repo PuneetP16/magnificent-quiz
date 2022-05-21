@@ -1,0 +1,72 @@
+:root {
+	--COLOR-BG-OPTION: #e6f0ff;
+}
+.summary__card {
+	border: 1px solid;
+	border-radius: 4px;
+	height: 40rem;
+	overflow-y: scroll;
+	padding: 5px;
+}
+
+.summary__answer_section {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	justify-content: center;
+	margin-bottom: 1rem;
+}
+
+.summary__question_wrapper {
+	display: flex;
+	gap: 8px;
+	flex-flow: column nowrap;
+}
+
+.summary__answer_section .option__container {
+	background-color: var(--COLOR-BG-OPTION);
+	border: 0.5px solid;
+	border-radius: 4px;
+	padding: 2px;
+	width: 48%;
+	cursor: default;
+	font-size: 1.6rem;
+}
+
+.summary__answer_section .option__container:hover {
+	background-color: var(--COLOR-BG-OPTION);
+}
+
+.summary__answer_section .option__container:active {
+	background-color: var(--COLOR-BG-OPTION);
+	transform: scale(1);
+}
+
+.summary__answer_section .correct_answer {
+	background-color: var(--COLOR-CORRECT);
+	color: var(--COLOR-PRIMARY);
+	font-weight: 500;
+}
+
+.summary__answer_section .correct_answer:hover {
+	background-color: var(--COLOR-CORRECT);
+	color: var(--COLOR-PRIMARY);
+	font-weight: 500;
+}
+
+.summary__answer_section .wrong_answer {
+	background-color: var(--COLOR-BG-WRONG);
+	color: var(--COLOR-WRONG);
+}
+
+.summary__answer_section .wrong_answer:hover {
+	background-color: var(--COLOR-BG-WRONG);
+	color: var(--COLOR-WRONG);
+}
+
+.summary__question {
+	font-size: 1.6rem;
+	padding: 0 4px;
+	padding-top: 8px;
+	font-weight: 500;
+}

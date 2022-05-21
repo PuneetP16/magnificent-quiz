@@ -32,6 +32,11 @@ export const QuizProvider = ({ children }) => {
 		initialQuizQuestionData ?? []
 	);
 
+	const [quizSummary, setQuizSummary] = useState({
+		questions: [],
+		categoryName: "",
+	});
+
 	const [playedQuizData, setPlayedQuizData] = useState(initialPlayedQuizData);
 	const [flag, setFlag] = useState(false);
 
@@ -84,6 +89,8 @@ export const QuizProvider = ({ children }) => {
 		setScore,
 		playedQuizData,
 		setPlayedQuizData,
+		quizSummary,
+		setQuizSummary,
 	};
 
 	return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
