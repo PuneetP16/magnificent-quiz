@@ -1,3 +1,4 @@
+export { Toast } from "./UI/Toast/Toast";
 export { Alert } from "components/UI/Alert/Alert";
 export { Aside } from "components/UI/Aside/Aside";
 export { AsideMobile } from "components/UI/Aside/AsideMobile";

@@ -1,5 +1,5 @@
 import { SummaryCard } from "components";
-import { useAlert, useAuth, useModal, useQuiz } from "contexts";
+import { useAlert, useAuth, useModal, useQuiz, useTheme } from "contexts";
 import { bxIcons } from "data/icons";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -10,14 +10,14 @@ import "./ScoreModal.css";
 export const ScoreModal = () => {
 	const { modal, setModal } = useModal();
 	const { score, playedQuizData, quizSummary, setQuizSummary } = useQuiz();
-	const { setAlert } = useAlert();
+	const { theme } = useTheme();
 	const {
 		authState: { token, email },
 	} = useAuth();
 
 	useEffect(() => {
 		if (token) {
-			updateDbUserData(email, playedQuizData, setAlert);
+			updateDbUserData(email, playedQuizData, theme);
 		}
 	}, [token, modal]);
 

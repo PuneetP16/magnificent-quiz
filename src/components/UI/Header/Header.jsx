@@ -10,7 +10,6 @@ export const Header = () => {
 				<img className="logo__img" src={icon} alt="logo" />
 				Quiz
 			</Link>
-			{/* <SearchBox /> */}
 			<CTA />
 		</header>
 	);

@@ -2,14 +2,15 @@ import "./CTA.css";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { ThemeToggle } from "components/UI/ThemeToggle/ThemeToggle";
-import { useAlert, useAuth } from "../../../../contexts";
+import { useAlert, useAuth, useTheme } from "../../../../contexts";
 import { ROUTES } from "utils/routes";
+import { Toast } from "components";
 
 export const CTA = () => {
 	const { authState, authDispatch } = useAuth();
 	const { pathname } = useLocation();
-	const { setAlert } = useAlert();
 	const isAuth = !!authState?.token;
+	const { theme } = useTheme();
 
 	const logoutHandler = () => {
 		if (isAuth) {
@@ -17,12 +18,7 @@ export const CTA = () => {
 			authDispatch({
 				type: "LOGOUT",
 			});
-			setAlert((a) => ({
-				...a,
-				visibility: true,
-				text: "Logged Out",
-				type: "alert--success",
-			}));
+			Toast("success", "Successfully Logged Out", theme);
 		}
 	};
 

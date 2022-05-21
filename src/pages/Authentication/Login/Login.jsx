@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { InputTypeOne, InputTypeThree, InputTypeTwo } from "components";
+import { InputTypeOne, InputTypeThree, InputTypeTwo, Toast } from "components";
 import { useDocumentTitle } from "customHooks";
 import "./Login.css";
 import { bxIcons } from "data/icons";
-import { useAlert, useAuth } from "contexts";
+import { useAlert, useAuth, useTheme } from "contexts";
 import {
 	emailLoginHandler,
 	googleLoginHandler,
@@ -16,8 +16,8 @@ export const Login = () => {
 	useDocumentTitle("Login | MS");
 
 	const [isVisible, setIsVisible] = useState(false);
-	const { setAlert } = useAlert();
 	const { authDispatch } = useAuth();
+	const { theme } = useTheme();
 
 	const [loginData, setLoginData] = useState({
 		email: "test@test.com",
@@ -41,10 +41,10 @@ export const Login = () => {
 	};
 
 	const googleSigninHandler = () => {
-		googleLoginHandler(authDispatch, setAlert);
+		googleLoginHandler(authDispatch, theme);
 	};
 	const facebookSigninHandler = () => {
-		facebookLoginHandler(authDispatch, setAlert);
+		facebookLoginHandler(authDispatch, theme);
 	};
 
 	const emailRegex =
@@ -54,27 +54,17 @@ export const Login = () => {
 		e.preventDefault();
 
 		if (loginData.email.trim() === "" || loginData.password.trim() === "") {
-			setAlert((a) => ({
-				...a,
-				visibility: true,
-				text: "Input cannot be blank, try again",
-				type: "alert--danger",
-			}));
+			Toast("warning", "Input cannot be blank, try again", theme);
 		} else {
 			if (loginData.email.match(emailRegex)) {
 				emailLoginHandler(
 					loginData.email,
 					loginData.password,
 					authDispatch,
-					setAlert
+					theme
 				);
 			} else {
-				setAlert((a) => ({
-					...a,
-					visibility: true,
-					text: "Entered email is wrong, please try again",
-					type: "alert--danger",
-				}));
+				Toast("warning", "Entered email is wrong, please try again", theme);
 			}
 		}
 	};
