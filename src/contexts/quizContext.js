@@ -1,3 +1,4 @@
+import { Toast } from "components";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
 	getAllQuizQuestions,
@@ -7,6 +8,7 @@ import {
 import { ROUTES } from "utils/routes";
 import { useAlert } from "./alertContext";
 import { useAuth } from "./authContext";
+import { useTheme } from "./themeContext";
 
 const QuizContext = createContext();
 
@@ -19,8 +21,7 @@ const initialPlayedQuizData = {
 };
 
 export const QuizProvider = ({ children }) => {
-	const { setAlert } = useAlert();
-
+	const { theme } = useTheme();
 	const {
 		authState: { token, name, email, profilePhoto, id },
 	} = useAuth();
@@ -32,6 +33,11 @@ export const QuizProvider = ({ children }) => {
 		initialQuizQuestionData ?? []
 	);
 
+	const [quizSummary, setQuizSummary] = useState({
+		questions: [],
+		categoryName: "",
+	});
+
 	const [playedQuizData, setPlayedQuizData] = useState(initialPlayedQuizData);
 	const [flag, setFlag] = useState(false);
 
@@ -39,9 +45,9 @@ export const QuizProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (allQuizQuestions.length < 1) {
-			getAllQuizQuestions(setAlert, allQuizQuestions, setAllQuizQuestions);
+			getAllQuizQuestions(allQuizQuestions, setAllQuizQuestions, theme);
 		}
-	}, [allQuizQuestions, setAlert]);
+	}, [allQuizQuestions, theme]);
 
 	const userData = { ...playedQuizData, name, email, profilePhoto, id };
 
@@ -50,23 +56,18 @@ export const QuizProvider = ({ children }) => {
 			setPlayedQuizData(initialPlayedQuizData);
 			try {
 				if (token) {
-					const response = await fetchUserData(email, setAlert);
+					const response = await fetchUserData(email, theme);
 					if (response.exists()) {
 						setPlayedQuizData(response.data());
 					} else {
 						// add if user is not in database
-						addUserToDb(email, userData, setAlert);
+						addUserToDb(email, userData, theme);
 						setPlayedQuizData(response.data());
 						setFlag(true);
 					}
 				}
 			} catch (error) {
-				setAlert((a) => ({
-					...a,
-					visibility: true,
-					text: error.message,
-					type: "alert--info",
-				}));
+				Toast("info", error.message, theme);
 			}
 		})();
 		const flagTimer = setTimeout(() => {
@@ -84,6 +85,8 @@ export const QuizProvider = ({ children }) => {
 		setScore,
 		playedQuizData,
 		setPlayedQuizData,
+		quizSummary,
+		setQuizSummary,
 	};
 
 	return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;

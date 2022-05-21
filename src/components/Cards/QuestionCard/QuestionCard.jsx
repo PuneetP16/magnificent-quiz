@@ -25,10 +25,11 @@ export const QuestionCard = ({
 
 	const { setModal } = useModal();
 
-	const { score, setScore, playedQuizData, setPlayedQuizData } = useQuiz();
+	const { score, setScore, playedQuizData, setPlayedQuizData, setQuizSummary } =
+		useQuiz();
 
 	const selectedQuestion = category?.questions[questionIndex];
-  
+
 	const quizBoard = [
 		{
 			icon: bxIcons.timeLeft,
@@ -80,6 +81,17 @@ export const QuestionCard = ({
 		let timeoutId = setTimeout(() => {
 			if (startQuiz) {
 				if (timer < 1 || !!answer.selected) {
+					setQuizSummary((prevSum) => ({
+						...prevSum,
+						questions: [
+							...prevSum.questions,
+							{
+								selectedQuestion,
+								selectedAnswer: answer.selected,
+							},
+						],
+						categoryName: category.name,
+					}));
 					if (questionIndex < totalQuestions - 1) {
 						setQuestionIndex((prevIndex) => prevIndex + 1);
 						setAnswer((a) => ({ ...a, selected: "" }));
@@ -141,18 +153,17 @@ export const QuestionCard = ({
 			</section>
 			<section className="answer__section bottom__buffer">
 				{selectedQuestion?.options.map((option, index) => (
-					<div key={index}>
-						<button
-							className={`option__container ${selectOptionsClass(option)} ${
-								!!answer.selected ? "button_disabled" : ""
-							}`}
-							onClick={() => answerChoiceHandler(option)}
-							disabled={!!answer.selected || timer === "stop"}
-							type="button"
-						>
-							{option}
-						</button>
-					</div>
+					<button
+						key={index}
+						className={`option__container ${selectOptionsClass(option)} ${
+							!!answer.selected ? "button_disabled" : ""
+						}`}
+						onClick={() => answerChoiceHandler(option)}
+						disabled={!!answer.selected || timer === "stop"}
+						type="button"
+					>
+						{option}
+					</button>
 				))}
 			</section>
 		</article>

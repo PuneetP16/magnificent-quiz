@@ -1,4 +1,5 @@
-import { useAlert, useAuth, useModal, useQuiz } from "contexts";
+import { SummaryCard } from "components";
+import { useAlert, useAuth, useModal, useQuiz, useTheme } from "contexts";
 import { bxIcons } from "data/icons";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -8,56 +9,59 @@ import "./ScoreModal.css";
 
 export const ScoreModal = () => {
 	const { modal, setModal } = useModal();
-	const { score, playedQuizData } = useQuiz();
-	const { setAlert } = useAlert();
-
+	const { score, playedQuizData, quizSummary, setQuizSummary } = useQuiz();
+	const { theme } = useTheme();
 	const {
 		authState: { token, email },
 	} = useAuth();
 
 	useEffect(() => {
 		if (token) {
-			updateDbUserData(email, playedQuizData, setAlert);
+			updateDbUserData(email, playedQuizData, theme);
 		}
 	}, [token, modal]);
 
-	const closeModal = () => {
+	const closeSummaryModalHandler = () => {
+		setQuizSummary({ questions: [], categoryName: "" });
 		setModal(false);
 	};
 
 	return (
 		<section className="scores__section">
 			<section className="score__header">
-				<div className="h3">Score</div>
+				<div className="h3">Quiz Summary</div>
 				<Link
 					to={ROUTES.home}
 					className="btn btn--outline--primary btn--circular btn--dismiss"
 					title="Close Modal"
-					onClick={closeModal}
+					onClick={closeSummaryModalHandler}
 				>
 					{bxIcons.cross}
 				</Link>
 			</section>
-			<section className="score__text">
-				You Scored: <span>{score}</span>
+			<section className="score__wrapper">
+				<section className="score__text">
+					Scored: <span>{score}</span>
+				</section>
+				<section className="score__text">
+					Total Score: <span>{playedQuizData.totalScore}</span>
+				</section>
 			</section>
-			<section className="score__text">
-				Highest so far: <span>{playedQuizData.highestScore}</span>
-			</section>
-			<section className="score__text">
-				Your Total Score: <span>{playedQuizData.totalScore}</span>
-			</section>
+			<div className="quiz__category_name">
+				Quiz name: {quizSummary.categoryName}
+			</div>
+			<SummaryCard />
 			<section className="scores__btn">
 				<Link
 					to={ROUTES.category}
-					onClick={() => setModal(false)}
+					onClick={closeSummaryModalHandler}
 					className="btn btn--primary"
 				>
 					Take New Quiz
 				</Link>
 				<Link
 					to={ROUTES.leaderboard}
-					onClick={() => setModal(false)}
+					onClick={closeSummaryModalHandler}
 					className="btn btn--outline--primary"
 				>
 					Check Leaderboard

@@ -1,3 +1,4 @@
+export { Toast } from "./UI/Toast/Toast";
 export { Alert } from "components/UI/Alert/Alert";
 export { Aside } from "components/UI/Aside/Aside";
 export { AsideMobile } from "components/UI/Aside/AsideMobile";
@@ -16,3 +17,4 @@ export { ThemeToggle } from "components/UI/ThemeToggle/ThemeToggle";
 export { QuestionCard } from "./Cards/QuestionCard/QuestionCard";
 export { RulesModal } from "./Modals/RulesModal/RulesModal";
 export { ScoreModal } from "./Modals/ScoreModal/ScoreModal";
+export { SummaryCard } from "./Cards/SummaryCard/SummaryCard";

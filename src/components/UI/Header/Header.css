@@ -42,8 +42,8 @@
 	font-weight: 700;
 }
 
-.header__links,
-.brand__text {
+body .header__links,
+body .brand__text {
 	text-decoration: none;
 	color: var(--COLOR-TXT);
 	border: none;
@@ -55,6 +55,7 @@
 	align-items: center;
 	justify-content: space-between;
 	gap: 5px;
+	opacity: 0.8;
 }
 
 .brand__text {
@@ -72,13 +73,15 @@
 	height: 2.5rem;
 }
 
-.header__links:hover,
-.brand__text:hover {
-	color: var(--COLOR-PRIMARY);
+html body .header__links:hover,
+html body .brand__text:hover {
+	opacity: 1;
+	color: var(--COLOR-TXT);
 }
 
-.header__links:active {
-	color: var(--COLOR-ACTIVE);
+html body .header__links:active {
+	color: var(--COLOR-TXT);
+	opacity: 1;
 }
 
 /* Search BOX  */

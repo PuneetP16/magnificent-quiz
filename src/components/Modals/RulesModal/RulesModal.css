@@ -60,9 +60,6 @@
 	gap: 5px;
 }
 
-.rules__list li {
-}
-
 .rules__btn,
 .scores__btn {
 	display: flex;
@@ -89,10 +86,10 @@
 
 .score__text {
 	text-align: center;
-	font-size: 2.2rem;
+	font-size:1.7rem;
 }
 
 .score__text span {
-	font-size: 2.5rem;
+	font-size: 1.8rem;
 	font-weight: 500;
 }

@@ -21,10 +21,11 @@
 	font-size: 2.2rem;
 	align-items: center;
 	gap: 2rem;
+	opacity: 0.8;
 }
 
 .nav__list_item:hover {
-	color: var(--COLOR-PRIMARY);
+	opacity: 1;
 }
 
 /* HOME RESPONSIVENESS */

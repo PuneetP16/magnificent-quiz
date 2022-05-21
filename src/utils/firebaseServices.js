@@ -17,26 +17,22 @@ import {
 import { child, get } from "firebase/database";
 import { ROUTES } from "./routes";
 import { getDoc, setDoc } from "firebase/firestore";
+import { Toast } from "components";
 
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 
-// update userdata after playing quiz
-export const updateDbUserData = async (email, playedQuizData, setAlert) => {
+// update the userdata after playing quiz
+export const updateDbUserData = async (email, playedQuizData, theme) => {
 	const currentUser = doc(firestore, `users/${email}`);
 	try {
 		await updateDoc(currentUser, playedQuizData);
 	} catch (error) {
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: error.message,
-			type: "alert--info",
-		}));
+		Toast("info", error.message, theme);
 	}
 };
 
-export const googleLoginHandler = async (authDispatch, setAlert) => {
+export const googleLoginHandler = async (authDispatch, theme) => {
 	try {
 		const response = await signInWithPopup(firebaseAuth, googleProvider);
 		authDispatch({
@@ -47,23 +43,13 @@ export const googleLoginHandler = async (authDispatch, setAlert) => {
 			},
 		});
 
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: "Login Successfull",
-			type: "alert--success",
-		}));
+		Toast("success", "Successfully Logged In", theme);
 	} catch (error) {
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: error.message,
-			type: "alert--info",
-		}));
+		Toast("info", error.message, theme);
 	}
 };
 
-export const facebookLoginHandler = async (authDispatch, setAlert) => {
+export const facebookLoginHandler = async (authDispatch, theme) => {
 	try {
 		const response = await signInWithPopup(firebaseAuth, facebookProvider);
 		authDispatch({
@@ -74,19 +60,9 @@ export const facebookLoginHandler = async (authDispatch, setAlert) => {
 			},
 		});
 
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: "Login Successfull",
-			type: "alert--success",
-		}));
+		Toast("success", "Successfully Logged In", theme);
 	} catch (error) {
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: error.message,
-			type: "alert--info",
-		}));
+		Toast("info", error.message, theme);
 	}
 };
 
@@ -94,7 +70,7 @@ export const emailLoginHandler = async (
 	email,
 	password,
 	authDispatch,
-	setAlert
+	theme
 ) => {
 	try {
 		const response = await signInWithEmailAndPassword(
@@ -110,19 +86,9 @@ export const emailLoginHandler = async (
 			},
 		});
 
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: "Login Successfull",
-			type: "alert--success",
-		}));
+		Toast("success", "Successfully Logged In", theme);
 	} catch (error) {
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: error.message,
-			type: "alert--info",
-		}));
+		Toast("info", error.message, theme);
 	}
 };
 
@@ -130,7 +96,7 @@ export const emailSignupHandler = async (
 	email,
 	password,
 	authDispatch,
-	setAlert
+	theme
 ) => {
 	try {
 		const response = await createUserWithEmailAndPassword(
@@ -146,46 +112,26 @@ export const emailSignupHandler = async (
 			},
 		});
 
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: "Account Created Successfully",
-			type: "alert--success",
-		}));
+		Toast("success", "Account Created Successfully", theme);
 	} catch (error) {
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: error.message,
-			type: "alert--info",
-		}));
+		Toast("info", error.message, theme);
 	}
 };
 
-export const passwordResetHandler = (email, setAlert) => {
+export const passwordResetHandler = (email, theme) => {
 	try {
 		sendPasswordResetEmail(firebaseAuth, email);
 
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: "Check your mailbox, to reset password",
-			type: "alert--success",
-		}));
+		Toast("success", "Check your mailbox, to reset password", theme);
 	} catch (error) {
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: error.message,
-			type: "alert--info",
-		}));
+		Toast("info", error.message, theme);
 	}
 };
 
 export const getAllQuizQuestions = async (
-	setAlert,
 	allQuizQuestions,
-	setAllQuizQuestions
+	setAllQuizQuestions,
+	theme
 ) => {
 	const dbRef = realTimeDBRef(firebaseRealtimeDB);
 	try {
@@ -196,41 +142,26 @@ export const getAllQuizQuestions = async (
 			localStorage.setItem(ROUTES.quizQuestionData, allQuestions.val());
 		}
 	} catch (error) {
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: error.message,
-			type: "alert--info",
-		}));
+		Toast("info", error.message, theme);
 	}
 };
 
-export const addUserToDb = async (email, userData, setAlert) => {
+export const addUserToDb = async (email, userData, theme) => {
 	const addUser = doc(firestore, `users/${email}`);
 	try {
 		await setDoc(addUser, userData, { merge: true });
 	} catch (error) {
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: error.message,
-			type: "alert--info",
-		}));
+		Toast("info", error.message, theme);
 	}
 };
 
-export const fetchUserData = async (email, setAlert) => {
+export const fetchUserData = async (email, theme) => {
 	const selectedUser = doc(firestore, `users/${email}`);
 	let response;
 	try {
 		response = await getDoc(selectedUser);
 	} catch (error) {
-		setAlert((a) => ({
-			...a,
-			visibility: true,
-			text: error.message,
-			type: "alert--info",
-		}));
+		Toast("info", error.message, theme);
 	}
 
 	return response;

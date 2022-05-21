@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { InputTypeOne, InputTypeThree, InputTypeTwo } from "components";
-import { useAlert, useAuth } from "contexts";
+import { InputTypeOne, InputTypeThree, InputTypeTwo, Toast } from "components";
+import { useAlert, useAuth, useTheme } from "contexts";
 import { useDocumentTitle } from "customHooks";
 import { bxIcons } from "data/icons";
 import "./SignUp.css";
@@ -24,10 +24,9 @@ export const SignUp = () => {
 
 	const [signUpData, setSignUpData] = useState(initialSignUpData);
 
-	const { setAlert } = useAlert();
-	const { authDispatch } = useAuth();
+	const { theme } = useTheme();
 
-	// const navigate = useNavigate();
+	const { authDispatch } = useAuth();
 
 	const onChangeHandler = (e) => {
 		if (e.target.name === "confirmPassword") {
@@ -49,12 +48,7 @@ export const SignUp = () => {
 		e.preventDefault();
 
 		if (signUpData.password !== confirmPass.value) {
-			setAlert((a) => ({
-				...a,
-				visibility: true,
-				text: "Password doesn't match",
-				type: "alert--danger",
-			}));
+			Toast("warning", "password doesn't match", theme);
 			return;
 		}
 
@@ -66,16 +60,16 @@ export const SignUp = () => {
 				signUpData.email,
 				signUpData.password,
 				authDispatch,
-				setAlert
+				theme
 			);
 			setSignUpData(initialSignUpData);
 		} else {
-			setAlert((a) => ({
-				...a,
-				visibility: true,
-				text: "Minimum 8 char, 1 Uppercase, 1 Lowercase, 1 number & 1 Special Character required",
-				type: "alert--danger",
-			}));
+			Toast(
+				"warning",
+				"Minimum 8 char, 1 Uppercase, 1 Lowercase, 1 number & 1 Special Character required",
+				theme
+			);
+
 			return;
 		}
 	};
@@ -155,7 +149,6 @@ export const SignUp = () => {
 							required={true}
 							name="consent"
 							onChange={onChangeHandler}
-							// value={}
 						/>
 					</section>
 					<button className="form__signup_btn btn btn--primary">Sign Up</button>
