@@ -27,8 +27,6 @@ export const SignUp = () => {
 	const { setAlert } = useAlert();
 	const { authDispatch } = useAuth();
 
-	// const navigate = useNavigate();
-
 	const onChangeHandler = (e) => {
 		if (e.target.name === "confirmPassword") {
 			setConfirmPass((s) => ({ ...s, value: e.target.value }));
@@ -155,7 +153,6 @@ export const SignUp = () => {
 							required={true}
 							name="consent"
 							onChange={onChangeHandler}
-							// value={}
 						/>
 					</section>
 					<button className="form__signup_btn btn btn--primary">Sign Up</button>

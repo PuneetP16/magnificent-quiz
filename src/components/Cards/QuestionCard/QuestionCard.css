@@ -94,7 +94,6 @@
 
 .answer__section .option__container:hover {
 	opacity: 1;
-	/* color: var(--COLOR-TXT); */
 }
 
 .answer__section .option__container:active {

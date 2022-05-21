@@ -21,7 +21,7 @@ import { getDoc, setDoc } from "firebase/firestore";
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 
-// update userdata after playing quiz
+// update the userdata after playing quiz
 export const updateDbUserData = async (email, playedQuizData, setAlert) => {
 	const currentUser = doc(firestore, `users/${email}`);
 	try {

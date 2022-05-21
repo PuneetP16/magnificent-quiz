@@ -3,7 +3,6 @@ import "./SummaryCard.css";
 
 export const SummaryCard = () => {
 	const { quizSummary } = useQuiz();
-	console.log(quizSummary, console.count());
 
 	const getOptionStyle = (ques, answer, option) => {
 		if (option === answer && answer === ques.answer) {
